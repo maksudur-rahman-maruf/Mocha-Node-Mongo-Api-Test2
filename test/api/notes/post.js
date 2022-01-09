@@ -11,13 +11,14 @@ describe('POST /notes', () => {
     conn.connect()
       .then(() => done())
       .catch((err) => done(err));
-      // done();
+      done();
   });
 
   after((done) => {
     conn.close()
       .then(() => done())
       .catch((err) => done(err));
+      // done();
   });
 
   it('OK, creating a new note works', (done) => {
@@ -25,14 +26,13 @@ describe('POST /notes', () => {
       .send({ name: 'NOTE', text: '123' })
       .then((res) => {
         const body = res.body;
-        console.log(body);
         expect(body).to.contain.property('_id');
         expect(body).to.contain.property('name');
         expect(body).to.contain.property('text');
         done();
       })
       .catch((err) => done(err));
-      // done();
+      done();
   });
 
   it('Fail, note requires text', (done) => {

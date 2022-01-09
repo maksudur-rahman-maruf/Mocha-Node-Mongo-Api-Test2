@@ -5,33 +5,30 @@ function connect() {
   return new Promise((resolve, reject) => {
 
     if (process.env.NODE_ENV === 'test') {
-      // const Mockgoose = require('mockgoose').Mockgoose;
-      // const mockgoose = new Mockgoose(mongoose);
+      const Mockgoose = require('mockgoose').Mockgoose;
+      const mockgoose = new Mockgoose(mongoose);
+      console.log('Mockgoose - WOW!');
 
-      // mockgoose.prepareStorage()
-      //   .then(() => {
-      //     mongoose.connect(DB_URI,
-      //       { useNewUrlParser: true})
-      //       .then((res, err) => {
-      //         if (err) return reject(err);
-      //         resolve(res);
-      //       })
-      //   })
-
-      mongoose.connect(DB_URI,
-        { useNewUrlParser: true})
-        .then((res, err) => {
-          if (err) return reject(err);
-          resolve(res);
+      mockgoose.prepareStorage()
+        .then(() => {
+          mongoose.connect(DB_URI,
+            { useNewUrlParser: true})
+            .then((res, err) => {
+              if (err) return reject(err);
+              resolve(res);
+            })
         })
 
     } else {
-        mongoose.connect(DB_URI,
+      console.log('Development - WOW!');
+      mongoose.connect(DB_URI,
           { useNewUrlParser: true})
           .then((res, err) => {
             if (err) return reject(err);
+            connectionStatus = res;
             resolve(res);
           })
+
     }
   });
 };

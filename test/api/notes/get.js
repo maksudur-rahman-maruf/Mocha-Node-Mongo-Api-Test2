@@ -9,14 +9,14 @@ const conn = require('../../../db/index.js');
 describe('GET /notes', () => {
   before((done) => {
     conn.connect()
-      .then(() => done())
+      .then(() => done())  
       .catch((err) => done(err));
-      // done();
+       done(); 
   });
 
   after((done) => {
     conn.close()
-      .then(() => done())
+      .then(() => done()) 
       .catch((err) => done(err));
       // done();
   });
@@ -29,7 +29,7 @@ describe('GET /notes', () => {
         done();
       })
       .catch((err) => done(err));
-      // done();
+       done();
   });
 
   it('OK, getting notes has 1 note', (done) => {
@@ -45,6 +45,8 @@ describe('GET /notes', () => {
           .catch((err) => done(err));
       })
       .catch((err) => done(err));
-      // done();
+      done();
   });
+
+
 })
