@@ -25,7 +25,6 @@ function connect() {
           { useNewUrlParser: true})
           .then((res, err) => {
             if (err) return reject(err);
-            connectionStatus = res;
             resolve(res);
           })
 
